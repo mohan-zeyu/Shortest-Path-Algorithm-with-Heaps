@@ -8,48 +8,6 @@
 // Forward declaration for heap top key
 int heapTopKey(BinaryHeap* heap);
 
-// Standard Dijkstra with early termination
-int Dijkstra(WorkSpace *workspace, CSRGraph *graph, int src, int dst) {
-    // Reset workspace
-    for (int i = 0; i < graph->num_vertices; i++) {
-        workspace->distance[i] = INT_MAX;
-        workspace->visited[i] = false;
-    }
-    workspace->heap->size = 0;
-    memset(workspace->heap->pos, -1, sizeof(int) * graph->num_vertices);
-    
-    workspace->distance[src] = 0;
-    heapPush(workspace->heap, src, 0);
-    
-    while (!heapEmpty(workspace->heap)) {
-        int u = heapPop(workspace->heap);
-        
-        // Early termination when we reach destination
-        if (u == dst) {
-            return workspace->distance[dst];
-        }
-        
-        if (workspace->visited[u]) continue;
-        workspace->visited[u] = true;
-        
-        int start = graph->row[u];
-        int end = graph->row[u + 1];
-        
-        for (int i = start; i < end; i++) {
-            int v = graph->col[i];
-            int weight = graph->weight[i];
-            int newDist = workspace->distance[u] + weight;
-            
-            if (newDist < workspace->distance[v]) {
-                workspace->distance[v] = newDist;
-                heapPush(workspace->heap, v, newDist);
-            }
-        }
-    }
-    
-    return INT_MAX; // No path found
-}
-
 // Bidirectional Dijkstra - much faster for point-to-point queries
 int BidirectionalDijkstra(BiDirWorkSpace *biworkspace, CSRGraph *graph, CSRGraph *reverse_graph, int src, int dst) {
     WorkSpace *forward = biworkspace->forward;

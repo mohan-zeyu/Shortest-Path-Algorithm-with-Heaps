@@ -5,67 +5,7 @@
 #include <string.h>
 #include "Definition_pairing_opt.h"
 
-// Standard Dijkstra with optimized pairing heap
-int DijkstraPairingOpt(WorkSpacePairing *workspace, CSRGraph *graph, int src, int dst) {
-    // Reset workspace
-    for (int i = 0; i < graph->num_vertices; i++) {
-        workspace->distance[i] = INT_MAX;
-        workspace->visited[i] = false;
-    }
-    
-    // Reset heap
-    pairingHeapReset(workspace->heap);
-    
-    workspace->distance[src] = 0;
-    pairingHeapInsert(workspace->heap, src, 0);
-    
-    int vertices_processed = 0;
-    
-    while (!pairingHeapEmpty(workspace->heap)) {
-        int u = pairingHeapExtractMin(workspace->heap);
-        
-        if (u == -1) break;
-        
-        // Skip if already visited (shouldn't happen with proper decrease-key)
-        if (workspace->visited[u]) continue;
-        workspace->visited[u] = true;
-        vertices_processed++;
-        
-        // Early termination when we reach destination
-        if (u == dst) {
-            return workspace->distance[dst];
-        }
-        
-        // Relax edges
-        int start = graph->row[u];
-        int end = graph->row[u + 1];
-        
-        for (int i = start; i < end; i++) {
-            int v = graph->col[i];
-            
-            // Skip if already visited
-            if (workspace->visited[v]) continue;
-            
-            int weight = graph->weight[i];
-            int newDist = workspace->distance[u] + weight;
-            
-            if (newDist < workspace->distance[v]) {
-                workspace->distance[v] = newDist;
-                // This will either insert or decrease key
-                pairingHeapInsert(workspace->heap, v, newDist);
-            }
-        }
-        
-        // Progress indicator for very long queries
-        if (vertices_processed % 1000000 == 0) {
-            printf("  Processed %d vertices...\n", vertices_processed);
-        }
-    }
-    
-    return (workspace->distance[dst] == INT_MAX) ? -1 : workspace->distance[dst];
-}
-
-// Bidirectional Dijkstra with optimized pairing heap
+// Bidirectional Dijkstra with pairing heap
 int BidirectionalDijkstraPairing(BiDirWorkSpacePairing *biworkspace, CSRGraph *graph, 
                                   CSRGraph *reverse_graph, int src, int dst) {
     WorkSpacePairing *forward = biworkspace->forward;
@@ -197,12 +137,6 @@ int BidirectionalDijkstraPairing(BiDirWorkSpacePairing *biworkspace, CSRGraph *g
                 }
             }
         }
-        
-        // Progress indicator
-        // if ((forward_processed + backward_processed) % 500000 == 0) {
-        //     printf("  Bidirectional: %d forward, %d backward vertices processed\n", 
-        //            forward_processed, backward_processed);
-        // }
     }
     
     biworkspace->best_distance = best_distance;

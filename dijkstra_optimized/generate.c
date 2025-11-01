@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-// CTR: 14081816 34292496
-// CAL 1890815 4657742
 
 int main(){
     int choice, N;

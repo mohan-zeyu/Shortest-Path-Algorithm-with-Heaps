@@ -8,7 +8,6 @@
 
 // External functions
 CSRGraph* CSRBuildReverse(CSRGraph* forward_graph);
-int heapTopKey(BinaryHeap* heap);
 
 typedef struct {
     int source;
@@ -31,29 +30,29 @@ int main() {
     FILE *filein, *fileout;
     switch (choice){
         case 0: file = fopen("../Map/USA-road-d.NY.gr", "r"); printf("NY\n"); 
-            filein=fopen("Queries/NY_Queries.txt","r"); fileout = fopen("Results/NY_Answer.txt", "w"); break;
+            filein=fopen("../Queries/NY_Queries.txt","r"); fileout = fopen("../Results/NY_Answer.txt", "w"); break;
         case 1: file = fopen("../Map/USA-road-d.BAY.gr", "r"); printf("BAY\n");
-            filein=fopen("Queries/BAY_Queries.txt","r"); fileout = fopen("Results/BAY_Answer.txt", "w"); break;
+            filein=fopen("../Queries/BAY_Queries.txt","r"); fileout = fopen("../Results/BAY_Answer.txt", "w"); break;
         case 2: file = fopen("../Map/USA-road-d.COL.gr", "r");printf("COL\n");
-            filein=fopen("Queries/COL_Queries.txt","r"); fileout = fopen("Results/COL_Answer.txt", "w"); break;
+            filein=fopen("../Queries/COL_Queries.txt","r"); fileout = fopen("../Results/COL_Answer.txt", "w"); break;
         case 3: file = fopen("../Map/USA-road-d.FLA.gr", "r"); printf("FLA\n");
-            filein=fopen("Queries/FLA_Queries.txt","r"); fileout = fopen("Results/FLA_Answer.txt", "w"); break;
+            filein=fopen("../Queries/FLA_Queries.txt","r"); fileout = fopen("../Results/FLA_Answer.txt", "w"); break;
         case 4: file = fopen("../Map/USA-road-d.NW.gr", "r");printf("NW\n");
-            filein=fopen("Queries/NW_Queries.txt","r"); fileout = fopen("Results/NW_Answer.txt", "w"); break;
+            filein=fopen("../Queries/NW_Queries.txt","r"); fileout = fopen("../Results/NW_Answer.txt", "w"); break;
         case 5: file = fopen("../Map/USA-road-d.NE.gr", "r");printf("NE\n");
-            filein=fopen("Queries/NE_Queries.txt","r"); fileout = fopen("Results/NE_Answer.txt", "w"); break;
+            filein=fopen("../Queries/NE_Queries.txt","r"); fileout = fopen("../Results/NE_Answer.txt", "w"); break;
         case 6: file = fopen("../Map/USA-road-d.CAL.gr", "r"); printf("CAL\n");
-            filein=fopen("Queries/CAL_Queries.txt","r"); fileout = fopen("Results/CAL_Answer.txt", "w"); break;
+            filein=fopen("../Queries/CAL_Queries.txt","r"); fileout = fopen("../Results/CAL_Answer.txt", "w"); break;
         case 7: file = fopen("../Map/USA-road-d.LKS.gr", "r"); printf("LKS\n");
-            filein=fopen("Queries/LKS_Queries.txt","r"); fileout = fopen("Results/LKS_Answer.txt", "w"); break;
+            filein=fopen("../Queries/LKS_Queries.txt","r"); fileout = fopen("../Results/LKS_Answer.txt", "w"); break;
         case 8: file = fopen("../Map/USA-road-d.E.gr", "r"); printf("E\n");
-            filein=fopen("Queries/E_Queries.txt","r"); fileout = fopen("Results/E_Answer.txt", "w"); break;
+            filein=fopen("../Queries/E_Queries.txt","r"); fileout = fopen("../Results/E_Answer.txt", "w"); break;
         case 9: file = fopen("../Map/USA-road-d.W.gr", "r"); printf("W\n");
-            filein=fopen("Queries/W_Queries.txt","r"); fileout = fopen("Results/W_Answer.txt", "w"); break;
+            filein=fopen("../Queries/W_Queries.txt","r"); fileout = fopen("../Results/W_Answer.txt", "w"); break;
         case 10: file = fopen("../Map/USA-road-d.CTR.gr", "r"); printf("CTR\n");
-            filein=fopen("Queries/CTR_Queries.txt","r"); fileout = fopen("Results/CTR_Answer.txt", "w"); break;
+            filein=fopen("../Queries/CTR_Queries.txt","r"); fileout = fopen("../Results/CTR_Answer.txt", "w"); break;
         case 11: file = fopen("../Map/USA-road-d.USA.gr", "r"); printf("USA\n");
-            filein=fopen("Queries/USA_Queries.txt","r"); fileout = fopen("Results/USA_Answer.txt", "w"); break;
+            filein=fopen("../Queries/USA_Queries.txt","r"); fileout = fopen("../Results/USA_Answer.txt", "w"); break;
         default: printf("Fuck you!"); return 2;
     }
     // Graph initialization

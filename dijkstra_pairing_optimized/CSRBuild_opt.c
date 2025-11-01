@@ -11,8 +11,6 @@ typedef struct {
 } Edge;
 
 CSRGraph* CSRBuild(FILE* file) {
-    // FILE *file = fopen("../USA-road-d.NY.gr", "r");
-    
     // Create graph structure
     CSRGraph *graph = (CSRGraph*)malloc(sizeof(CSRGraph));
     
