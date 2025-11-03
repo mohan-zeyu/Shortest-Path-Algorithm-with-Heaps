@@ -43,9 +43,7 @@ static inline void freeNode(FibonacciHeap* heap, FibNode* node) {
     }
 }
 
-// ============================================================================
 // FIBONACCI HEAP OPERATIONS
-// ============================================================================
 
 FibonacciHeap* createFibHeap(int capacity) {
     FibonacciHeap* heap = (FibonacciHeap*)malloc(sizeof(FibonacciHeap));

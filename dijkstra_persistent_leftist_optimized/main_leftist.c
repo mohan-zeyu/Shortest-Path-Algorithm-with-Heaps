@@ -104,7 +104,13 @@ int main() {
             filein=fopen("../Queries/USA_Queries.txt","r"); fileout = fopen("../Results/USA_Answer.txt", "w"); break;
         default: printf("Fuck you!"); return 2;
     }
+    clock_t c0 = clock();
     G = initialize_graph_dynamic(&G_rev, &N);// Read all edges dynamically from stdin and initialize graphs
+    clock_t c1 = clock();
+    double cpu_seconds = (double)(c1 - c0) / CLOCKS_PER_SEC;
+
+    printf("Graph loading time: %.3f seconds\n", cpu_seconds);
+
     const HeapInterface *interface = &LeftistHeapInterface;
     int total_found = 0;
     fscanf(filein,"%d",&NUM_QUERIES);// Use the correctly maintained num_edges for the report
